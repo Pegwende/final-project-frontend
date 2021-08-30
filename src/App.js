@@ -26,10 +26,18 @@ const App = () => {
               getFoods()
             })
     }
+    const handleDelete=(event)=>{
+        axios
+            .delete('https://pegfinalprojectbackend.herokuapp.com/api/foods/' + event.target.value)
+            .then((response)=>{
+              getFoods()
+            })
+    }
 
     useEffect(()=>{
         getFoods()
     },[])
+
 
 
 
@@ -44,9 +52,10 @@ const App = () => {
                     return(
                         <div className='food'>
                             <h3>Name: {food.name}</h3>
-                            <img src={food.image}/>
+                            <img src={food.image} alt=''/>
                             <p>Description: {food.description}</p>
                             <p>Price: {food.price}</p>
+                            <button type='button' value={food.id} onClick={handleDelete}> Delete </button>
                         </div>
 
                     )
