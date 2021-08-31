@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios'
 import Add from './components/Add'
+import Edit from './components/Edit'
 
 
 const App = () => {
@@ -33,6 +34,14 @@ const App = () => {
               getFoods()
             })
     }
+    const handleUpdate =(editFood)=>{
+      console.log(editFood);
+          axios
+              .put('https://pegfinalprojectbackend.herokuapp.com/api/foods/' + editFood.id, editFood)
+              .then((response)=>{
+                getFoods()
+              })
+    }
 
     useEffect(()=>{
         getFoods()
@@ -52,6 +61,7 @@ const App = () => {
                     return(
                         <div className='food'>
                             <h3>Name: {food.name}</h3>
+                            <Edit handleUpdate={handleUpdate} theFood={food} />
                             <img src={food.image} alt=''/>
                             <p>Description: {food.description}</p>
                             <p>Price: {food.price}</p>
