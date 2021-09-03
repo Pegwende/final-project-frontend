@@ -3,7 +3,7 @@ import React, {useState} from 'react'
 const Add = (props) => {
 
 
-    let emptyFood = {name:"", image:"", description:"", price:""}
+    let emptyFood = {name:"", image:"", description:"", price:"", category:"", number:""}
     let [theFood, setTheFood]=useState(emptyFood)
 
 
@@ -31,6 +31,10 @@ const Add = (props) => {
                     <input className="input is-focused" type='text' name='description' onChange={handleChange} />
                     <label className= 'title is-focused' htmlFor='price'>Price: </label>
                     <input className="input is-focused" type='number' name='price' onChange={handleChange} />
+                    <label className= 'title is-focused' htmlFor='number'>Phone number: </label>
+                    <input className="input is-focused" type='text' name='number' onChange={handleChange} />
+                    <label className= 'title is-focused' htmlFor='category'>Category: </label>
+                    <input className="input is-focused" type='text' name='category' onChange={handleChange} />
                     <input className="button is-success mt-1 mb-5" type='submit' />
                 </form>
             </div>

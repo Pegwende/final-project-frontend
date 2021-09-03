@@ -8,7 +8,15 @@ import './App.css'
 const App = () => {
 
     let [foods, setFoods] = useState([])
+    let [select, setSelect] = useState('all')
 
+
+
+    const getSelect = (event)=>{
+        console.log(select)
+        setSelect(event.currentTarget.value)
+
+    }
 
     const getFoods = () => {
         axios
@@ -44,6 +52,7 @@ const App = () => {
               })
     }
 
+
     useEffect(()=>{
         getFoods()
     },[])
@@ -66,21 +75,19 @@ const App = () => {
                         <p class='subtitle'> Best foods in town</p>
                     </div>
                 </div>
-                <div className="hero-footer has-text-centered">
-                    <form className="mb-5">
-                    <label className="title is-5" for='categories'>Cuisine: </label>
-                    <select name="categories" id='categories'>
-                        <option value='american'>AMERICAN</option>
-                        <option value='africans'>AFRICA</option>
-                        <option value='chinese'>CHINESE</option>
-                        <option value='italian'>ITALIAN</option>
-                        <option value='japanese'>JAPANESE</option>
-                        <option value='mexican'>MEXICAN</option>
-                        <option value='colombian'>COLOMBIAN</option>
-                        <option value='india'>INDIA</option>
-                        <input type='submit' value='submit'/>
+                <div className="hero-footer has-text-centered mb-5">
+                    <label className="title is-5" for='categories'>Category: </label>
+                    <select value={select} name="categories" onChange={getSelect}>
+                        <option value='all' >ALL</option>
+                        <option value='american' >AMERICAN</option>
+                        <option value='africa' >AFRICA</option>
+                        <option value='chinese' >CHINESE</option>
+                        <option value='italian' >ITALIAN</option>
+                        <option value='japanese' >JAPANESE</option>
+                        <option value='mexican' >MEXICAN</option>
+                        <option value='colombian' >COLOMBIAN</option>
+                        <option value='india' >INDIA</option>
                     </select>
-                    </form>
                 </div>
 
             </section>
@@ -89,11 +96,19 @@ const App = () => {
 
             <div className="block columns is-flex-direction-row is-justify-content-space-around is-flex-wrap-wrap is-narrow has-background-light">
                 {
-                    foods.map((food)=>{
+                    foods.filter((element)=>{
+                        if(select === "all"){
+                             return element
+                        } else if(select===element.category.toLowerCase())
+                        {
+                            return element
+                        } 
+                    }).map((food)=>{
                         return(
                             <div className=' column is-3 card has-text-centered m-5 is-justify-content-space-around is-narrow' key={food.id}>
                                 <div className='card-image is-narrow'>
                                     <h3 className="title is-1 has-text-centered"> {food.name}</h3>
+                                    <p className="subtitle mb-1">{food.category}</p>
                                     <figure className='image is-2by1'>
                                     <img src={food.image} alt=''/>
                                     </figure>
@@ -102,6 +117,7 @@ const App = () => {
                                     <div className='content'>
                                         <p className="title is-5 has-text-primary-dark">Description: {food.description}</p>
                                         <p className="title is-4 mb-1">${food.price}</p>
+                                        <p className=" mb-1"> Call: {food.number}</p>
                                           <Edit className="" handleUpdate={handleUpdate} theFood={food} />
                                           <button className="button is-danger mt-1" type='button' value={food.id} onClick={handleDelete}> Delete </button>
                                     </div>
