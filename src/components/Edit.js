@@ -19,7 +19,7 @@ const Edit = (props) => {
     return(
         <>
             <details>
-                <summary  className= 'title is-3 mb-0'> Edit</summary>
+                <summary  className= 'title is-4 mb-0'> Edit</summary>
                 <form className="card-content mt-0" onSubmit={handleSubmit}>
                     <label className= 'title is-4' htmlFor='name'>Name: </label>
                     <input className="input is-focused is-small " type='text' name='name' onChange={handleChange} value={theFood.name} />
