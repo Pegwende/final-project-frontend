@@ -16,3 +16,7 @@ npm install bulma
 
 color
 Most elements and components have color variations thanks to modifiers with syntax .is-$color, like is-primary or is-dark.
+
+
+to use Bulma icon run in terminal:
+npm install --save @fortawesome/fontawesome-free
