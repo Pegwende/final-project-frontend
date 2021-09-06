@@ -19,4 +19,7 @@ Most elements and components have color variations thanks to modifiers with synt
 
 
 to use Bulma icon run in terminal:
+
 npm install --save @fortawesome/fontawesome-free
+
+or add to html : <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>

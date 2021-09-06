@@ -149,7 +149,7 @@ const App = () => {
                                       <option value='india' >INDIA</option>
                                   </select>
                               </div>
-                              <div className="is-flex is-justify-content-space-around mt">
+                              <div className="is-flex is-justify-content-space-around mt-6">
                                   <a href="https://www.instagram.com/aristidezabsore/" target="_blank">
                                       <i class="icon fab fa-instagram  is-large 2em	"></i>
                                  </a>
